@@ -6,10 +6,26 @@ import { CheckIcon, ChevronDownIcon, ChevronUpIcon } from "lucide-react"
 
 import { cn } from "@/src/lib/utils"
 
-function Select({
-  ...props
-}: React.ComponentProps<typeof SelectPrimitive.Root>) {
-  return <SelectPrimitive.Root data-slot="select" {...props} />
+interface SelectProps
+  extends React.ComponentProps<typeof SelectPrimitive.Root> {
+  label?: string
+  id?: string
+}
+
+function Select({ label, id, children, ...props }: SelectProps) {
+  return (
+    <div className="flex flex-col gap-2">
+      {label && (
+        <label htmlFor={id}>
+          {label}
+        </label>
+      )}
+
+      <SelectPrimitive.Root {...props}>
+        {children}
+      </SelectPrimitive.Root>
+    </div>
+  )
 }
 
 function SelectGroup({

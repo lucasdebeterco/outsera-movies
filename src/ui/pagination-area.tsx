@@ -34,7 +34,7 @@ export function PaginationArea({ pagination }: PaginationAreaProps) {
 
   function buildQueryParams(page: number) {
     const params = new URLSearchParams(searchParams.toString())
-    params.set('pagina', page.toString())
+    params.set('page', page.toString())
     return `?${params.toString()}`
   }
 

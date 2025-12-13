@@ -18,8 +18,6 @@ export async function getMovies({ filters }: GetMoviesProps = {}) {
     page: filters?.page ? filters.page - 1 : 0,
   })
 
-  console.log(`${baseUrl}/movies${searchParams}`)
-
   const response = await fetch(
     `${baseUrl}/movies${searchParams}`,
     {
