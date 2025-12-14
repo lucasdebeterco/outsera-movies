@@ -4,22 +4,30 @@ import { StudiosWithWinCountTable } from '@/src/app/(dashboard)/components/studi
 import { getStudiosWithWinCount } from '@/src/app/api/get-studios-with-win-count'
 import { getIntervals } from '@/src/app/api/get-intervals'
 import { IntervalsTable } from '@/src/app/(dashboard)/components/intervals-table'
+import { WinnersByYearTable } from '@/src/app/(dashboard)/components/winners-by-year-table'
+import { getWinnersByYear, GetWinnersByYearFilterProps } from '@/src/app/api/get-winners-by-year'
+import { SearchParams } from 'next/dist/server/request/search-params'
 
-export default async function Dashboard() {
+export default async function Dashboard(props: {
+  searchParams: SearchParams
+}) {
+  const searchParams = await props.searchParams
+  const filters: GetWinnersByYearFilterProps = {
+    year: searchParams.year ? Number(searchParams.year) : undefined,
+  }
+
   const yearsWithMultipleWinners = await getYearsWithMultipleWinners()
   const studiosWithWinCount = await getStudiosWithWinCount()
   const intervalsData = await getIntervals()
+  const winnersByYearData = await getWinnersByYear({ filters: filters })
 
   return (
    <section className="overflow-y-auto max-h-[100%]">
      <div className="flex flex-col gap-6">
-     <YearsWithMultipleWinnersTable data={yearsWithMultipleWinners?.years} />
-     <StudiosWithWinCountTable data={studiosWithWinCount?.studios} />
-     <IntervalsTable data={intervalsData} />
-
-     Exibir em tabela os vencedores de determinado ano selecionado através de um campo
-     de busca.
-
+       <YearsWithMultipleWinnersTable data={yearsWithMultipleWinners?.years} />
+       <StudiosWithWinCountTable data={studiosWithWinCount?.studios} />
+       <IntervalsTable data={intervalsData} />
+       <WinnersByYearTable data={winnersByYearData} />
      </div>
 
    </section>
