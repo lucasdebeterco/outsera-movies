@@ -19,7 +19,7 @@ export default async function List(props: {
 
    return (
      <section className="overflow-y-auto max-h-full">
-      <h1>List of Movies</h1>
+      <h1 className='text-2xl font-bold text-secondary'>List of Movies</h1>
       <MoviesTable moviesList={movies?.content} />
       <PaginationArea pagination={{
         totalPages: movies.totalPages,

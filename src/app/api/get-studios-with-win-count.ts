@@ -1,4 +1,3 @@
-import { GetMoviesProps } from '@/src/app/api/get-movies'
 import { createSearchParams } from '@/src/app/api/utils/create-search-params'
 
 interface getStudiosWithWinCountFiltersProps {
