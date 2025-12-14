@@ -16,10 +16,9 @@ export default async function List(props: {
   }
 
    const movies = await getMovies({ filters: filters })
-   console.log('movies', movies)
 
    return (
-    <section>
+     <section className="overflow-y-auto max-h-full">
       <h1>List of Movies</h1>
       <MoviesTable moviesList={movies?.content} />
       <PaginationArea pagination={{

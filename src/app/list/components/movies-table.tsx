@@ -34,7 +34,6 @@ export function MoviesTable({ moviesList }: MoviesTableProps) {
 
     const params = new URLSearchParams(searchParams.toString())
 
-    console.log(filterWinner)
     if (filterWinner) {
       params.set('winner', filterWinner)
     } else {
