@@ -12,7 +12,7 @@ const mockData: StudiosWithWinCount[] = [
 describe('StudiosWithWinCountTable', () => {
   it('renders the table with correct label and only top 3 studios', () => {
     render(<StudiosWithWinCountTable data={mockData} />);
-    expect(screen.getByText(/Mostrar em uma tabela os três estúdios/i)).toBeInTheDocument();
+    expect(screen.getByText(/Top 3 studios with winners/i)).toBeInTheDocument();
     expect(screen.getByText('Studio A')).toBeInTheDocument();
     expect(screen.getByText('Studio B')).toBeInTheDocument();
     expect(screen.getByText('Studio C')).toBeInTheDocument();

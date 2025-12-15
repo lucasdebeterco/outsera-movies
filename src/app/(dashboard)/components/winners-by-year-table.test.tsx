@@ -22,10 +22,9 @@ describe('WinnersByYearTable', () => {
 
   it('renders the table and filter form', () => {
     render(<WinnersByYearTable data={mockData} />);
-    expect(screen.getByText(/Exibir em tabela os vencedores/i)).toBeInTheDocument();
-    expect(screen.getByLabelText('Year')).toBeInTheDocument();
+    expect(screen.getByText(/Movie winners by year/i)).toBeInTheDocument();
     expect(screen.getByPlaceholderText('Search year')).toBeInTheDocument();
-    expect(screen.getByText('Filter')).toBeInTheDocument();
+    expect(screen.getByRole('filter-button')).toBeInTheDocument();
     expect(screen.getByText('2000')).toBeInTheDocument();
     expect(screen.getByText('2001')).toBeInTheDocument();
     expect(screen.getByText('123')).toBeInTheDocument();
@@ -34,7 +33,7 @@ describe('WinnersByYearTable', () => {
 
   it('updates the filter input value', () => {
     render(<WinnersByYearTable data={mockData} />);
-    const input = screen.getByLabelText('Year');
+    const input = screen.getByPlaceholderText('Search year');
     fireEvent.change(input, { target: { value: '2001' } });
     expect(input).toHaveValue('2001');
   });
@@ -42,18 +41,18 @@ describe('WinnersByYearTable', () => {
   it('submits the form and sets year param', () => {
     searchParamsValue = '';
     render(<WinnersByYearTable data={mockData} />);
-    const input = screen.getByLabelText('Year');
+    const input = screen.getByPlaceholderText('Search year');
     fireEvent.change(input, { target: { value: '2020' } });
-    fireEvent.click(screen.getByText('Filter'));
+    fireEvent.click(screen.getByRole('filter-button'));
     expect(pushMock).toHaveBeenCalledWith('?year=2020');
   });
 
   it('submits the form and deletes year param if input is empty', () => {
     searchParamsValue = 'year=2020';
     render(<WinnersByYearTable data={mockData} />);
-    const input = screen.getByLabelText('Year');
+    const input = screen.getByPlaceholderText('Search year');
     fireEvent.change(input, { target: { value: '' } });
-    fireEvent.click(screen.getByText('Filter'));
+    fireEvent.click(screen.getByRole('filter-button'));
     expect(pushMock).toHaveBeenCalledWith('?');
   });
 });

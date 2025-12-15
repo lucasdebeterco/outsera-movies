@@ -23,24 +23,23 @@ describe('MoviesTable', () => {
 
   it('should render form and table', () => {
     render(<MoviesTable moviesList={moviesList} />)
-    expect(screen.getByText('Filter')).toBeInTheDocument()
+    expect(screen.getByRole('filter-button')).toBeInTheDocument()
     expect(screen.getByRole('combobox')).toBeInTheDocument()
-    expect(screen.getByLabelText('Year')).toBeInTheDocument()
     expect(screen.getByText('Filme 1')).toBeInTheDocument()
     expect(screen.getByText('Filme 2')).toBeInTheDocument()
   })
 
   it('should send the filter and call router.push', () => {
     render(<MoviesTable moviesList={moviesList} />)
-    fireEvent.change(screen.getByLabelText('Year'), { target: { value: '2021' } })
-    fireEvent.click(screen.getByText('Filter'))
+    fireEvent.change(screen.getByPlaceholderText('Year'), { target: { value: '2021' } })
+    fireEvent.click(screen.getByRole('filter-button'))
     expect(mockPush).toHaveBeenCalled()
   })
 
   it('should send the filter with empty year', () => {
     render(<MoviesTable moviesList={moviesList} />)
-    fireEvent.change(screen.getByLabelText('Year'), { target: { value: '' } })
-    fireEvent.click(screen.getByText('Filter'))
+    fireEvent.change(screen.getByPlaceholderText('Year'), { target: { value: '' } })
+    fireEvent.click(screen.getByRole('filter-button'))
     expect(mockPush).toHaveBeenCalledWith('?page=1')
   })
 
@@ -50,7 +49,7 @@ describe('MoviesTable', () => {
     fireEvent.click(select)
     const listbox = screen.getByRole('listbox')
     fireEvent.click(within(listbox).getByText('Yes'))
-    fireEvent.click(screen.getByText('Filter'))
+    fireEvent.click(screen.getByRole('filter-button'))
     expect(mockPush).toHaveBeenCalledWith('?winner=1&page=1')
   })
 
@@ -60,13 +59,13 @@ describe('MoviesTable', () => {
     fireEvent.click(select)
     const listbox = screen.getByRole('listbox')
     fireEvent.click(within(listbox).getByText('No'))
-    fireEvent.click(screen.getByText('Filter'))
+    fireEvent.click(screen.getByRole('filter-button'))
     expect(mockPush).toHaveBeenCalledWith('?winner=0&page=1')
   })
 
   it('should send the filter with no winner', () => {
     render(<MoviesTable moviesList={moviesList} />)
-    fireEvent.click(screen.getByText('Filter'))
+    fireEvent.click(screen.getByRole('filter-button'))
     expect(mockPush).toHaveBeenCalledWith('?page=1')
   })
 
@@ -74,6 +73,6 @@ describe('MoviesTable', () => {
     mockUseSearchParams = jest.fn(() => new URLSearchParams('winner=1&year=2020'))
     render(<MoviesTable moviesList={moviesList} />)
     expect(screen.getByRole('combobox')).toHaveTextContent('Yes')
-    expect(screen.getByLabelText('Year')).toHaveValue('2020')
+    expect(screen.getByPlaceholderText('Year')).toHaveValue('2020')
   })
 })

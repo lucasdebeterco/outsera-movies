@@ -14,7 +14,7 @@ const mockData: Intervals = {
 describe('IntervalsTable', () => {
   it('renders the table with correct labels and data', () => {
     render(<IntervalsTable data={mockData} />);
-    expect(screen.getByText(/Mostrar em tabelas os produtores/i)).toBeInTheDocument();
+    expect(screen.getByText(/Producers with longest and shortest interval between wins/i)).toBeInTheDocument();
     expect(screen.getByText(/Maximum/i)).toBeInTheDocument();
     expect(screen.getByText(/Minimum/i)).toBeInTheDocument();
     expect(screen.getByText('Producer A')).toBeInTheDocument();

@@ -10,7 +10,7 @@ const mockData: YearWithMultipleWinners[] = [
 describe('YearsWithMultipleWinnersTable', () => {
   it('renders the table with correct label and data', () => {
     render(<YearsWithMultipleWinnersTable data={mockData} />);
-    expect(screen.getByText(/Mostrar em uma tabela os anos/i)).toBeInTheDocument();
+    expect(screen.getByText(/Years with multiple winners/i)).toBeInTheDocument();
     expect(screen.getByText('2000')).toBeInTheDocument();
     expect(screen.getByText('2010')).toBeInTheDocument();
     expect(screen.getByText('2')).toBeInTheDocument();

@@ -42,7 +42,7 @@ export function WinnersByYearTable(
         Movie winners by year
       </span>
 
-      <form onSubmit={handleSubmit} className="flex gap-1 items-end">
+      <form onSubmit={handleSubmit} className="flex gap-3 items-end">
         <Input
           value={filterYear}
           onChange={(e) => setFilterYear(e.target.value)}
@@ -50,7 +50,7 @@ export function WinnersByYearTable(
           id="filterYear"
           placeholder='Search year'
         />
-        <Button type="submit" className='flex text-secondary'>
+        <Button type="submit" role="filter-button" className='flex text-secondary'>
           <Search />
         </Button>
       </form>

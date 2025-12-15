@@ -72,7 +72,7 @@ export function MoviesTable({ moviesList }: MoviesTableProps) {
           placeholder="Year"
           id="filterYear"
         />
-        <Button type="submit" className='text-secondary'>
+        <Button type="submit" role='filter-button' className='text-secondary'>
           <Search />
         </Button>
       </form>
