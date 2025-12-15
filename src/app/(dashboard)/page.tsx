@@ -23,7 +23,7 @@ export default async function Dashboard(props: {
   const winnersByYearData = await getWinnersByYear({ filters: filters })
 
   return (
-   <section className="overflow-y-auto flex flex-col gap-5 max-h-[100%]">
+   <section className="overflow-y-auto flex flex-col gap-5 max-h-[100%] pr-2">
      <h1 className='text-2xl font-bold text-primary'>
        Movies Dashboard
      </h1>

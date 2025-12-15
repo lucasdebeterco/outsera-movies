@@ -19,7 +19,7 @@ export default async function List(props: {
    const movies = await getMovies({ filters: filters })
 
    return (
-     <section className="overflow-y-auto flex flex-col gap-5 max-h-full">
+     <section className="overflow-y-auto flex flex-col gap-5 max-h-full pr-2">
       <h1 className='text-2xl font-bold text-primary'>
         List of Movies
       </h1>
