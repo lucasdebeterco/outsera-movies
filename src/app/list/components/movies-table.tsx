@@ -16,6 +16,7 @@ import {
   SelectValue
 } from '@/src/ui/select'
 import { Button } from '@/src/ui/button'
+import { Search } from 'lucide-react'
 
 interface MoviesTableProps {
   moviesList: Movie[]
@@ -27,7 +28,7 @@ export function MoviesTable({ moviesList }: MoviesTableProps) {
   const params = new URLSearchParams(searchParams.toString())
 
   const [filterWinner, setFilterWinner] = useState(params.get('winner') ?? '')
-  const [filterYear, setFilterYear] = useState(params.get('year') ?? 0)
+  const [filterYear, setFilterYear] = useState(params.get('year') ?? '')
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
@@ -51,9 +52,9 @@ export function MoviesTable({ moviesList }: MoviesTableProps) {
   }
 
   return (
-    <>
-      <form onSubmit={handleSubmit} className="flex gap-3">
-        <Select value={filterWinner} onValueChange={setFilterWinner} label='Winner'>
+    <div>
+      <form onSubmit={handleSubmit} className="flex items-end gap-3 mb-3">
+        <Select value={filterWinner} onValueChange={setFilterWinner}>
           <SelectTrigger className="w-[180px]">
             <SelectValue placeholder="Winner" />
           </SelectTrigger>
@@ -68,16 +69,15 @@ export function MoviesTable({ moviesList }: MoviesTableProps) {
           value={filterYear}
           onChange={(e) => setFilterYear(e.target.value)}
           name="filterYear"
+          placeholder="Year"
           id="filterYear"
-          label="Year"
         />
-
-        <Button type="submit">
-          Filter
+        <Button type="submit" className='text-secondary'>
+          <Search />
         </Button>
       </form>
 
       <DataTable columns={moviesListColumns} data={moviesList} />
-    </>
+    </div>
   )
 }

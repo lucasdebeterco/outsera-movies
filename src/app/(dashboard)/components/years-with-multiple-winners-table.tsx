@@ -10,9 +10,9 @@ export function YearsWithMultipleWinnersTable(
   { data }: YearsWithMultipleWinnersTableProps
 ) {
   return (
-    <div>
-      <span>
-        Mostrar em uma tabela os anos que tiveram mais de um vencedor
+    <div className='flex flex-col gap-2'>
+      <span className='font-bold'>
+        Years with multiple winners
       </span>
       <DataTable columns={yearWithMultipleWinnersColumns} data={data} />
     </div>

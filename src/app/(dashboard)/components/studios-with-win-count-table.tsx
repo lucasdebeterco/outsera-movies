@@ -13,9 +13,9 @@ export function StudiosWithWinCountTable(
   const topThreeStudios = data.slice(0, 3)
 
   return (
-    <div>
-      <span>
-        Mostrar em uma tabela os três estúdios com mais vitórias
+    <div className='flex flex-col gap-2'>
+      <span className='font-bold'>
+        Top 3 studios with winners
       </span>
       <DataTable columns={studiosWithWinCountColumns} data={topThreeStudios} />
     </div>

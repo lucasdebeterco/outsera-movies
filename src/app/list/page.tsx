@@ -1,7 +1,8 @@
 import { getMovies, GetMoviesFilterProps } from '@/src/app/api/get-movies'
 import { MoviesTable } from '@/src/app/list/components/movies-table'
-import { SearchParams } from 'next/dist/server/request/search-params'
 import { PaginationArea } from '@/src/ui/pagination-area'
+
+type SearchParams = Promise<{ [page: string]: string }>
 
 export default async function List(props: {
   searchParams: SearchParams
@@ -18,8 +19,11 @@ export default async function List(props: {
    const movies = await getMovies({ filters: filters })
 
    return (
-     <section className="overflow-y-auto max-h-full">
-      <h1 className='text-2xl font-bold text-secondary'>List of Movies</h1>
+     <section className="overflow-y-auto flex flex-col gap-5 max-h-full">
+      <h1 className='text-2xl font-bold text-primary'>
+        List of Movies
+      </h1>
+
       <MoviesTable moviesList={movies?.content} />
       <PaginationArea pagination={{
         totalPages: movies.totalPages,

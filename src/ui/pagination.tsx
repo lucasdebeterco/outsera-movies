@@ -58,9 +58,9 @@ function PaginationLink({
           variant: isActive ? "outline" : "ghost",
           size,
         }),
-        'bg-secondary-light border-secondary-light/70',
-        isActive ? 'text-primary bg-secondary-light border-secondary-light/70' : '',
         className,
+        'bg-secondary-light hover:bg-secondary hover:text-primary border-secondary-light/70 text-sm',
+        isActive ? 'text-primary bg-secondary-light border-secondary-light/70' : '',
       )}
       {...props}
     />
@@ -69,33 +69,39 @@ function PaginationLink({
 
 function PaginationPrevious({
   className,
+  isActive,
   ...props
 }: React.ComponentProps<typeof PaginationLink>) {
   return (
     <PaginationLink
       aria-label="Go to previous page"
       size="default"
-      className={cn("gap-1 px-2.5 sm:pl-2.5 bg-secondary-light border-secondary-light/70", className)}
+      className={cn(
+        "gap-1 px-2.5 sm:pl-2.5 hover:text-primary bg-secondary-light border-secondary-light/70",
+        !isActive ? 'opacity-50 pointer-events-none' : 'opacity-100',
+        className)}
       {...props}
     >
       <ChevronLeftIcon />
-      <span className="hidden sm:block">Previous</span>
     </PaginationLink>
   )
 }
 
 function PaginationNext({
   className,
+  isActive,
   ...props
 }: React.ComponentProps<typeof PaginationLink>) {
   return (
     <PaginationLink
       aria-label="Go to next page"
       size="default"
-      className={cn("gap-1 px-2.5 sm:pr-2.5 bg-secondary-light border-secondary-light/70", className)}
+      className={cn(
+        "gap-1 px-2.5 sm:pr-2.5 hover:text-primary bg-secondary-light border-secondary-light/70",
+        !isActive ? 'opacity-50 pointer-events-none' : 'opacity-100',
+        className)}
       {...props}
     >
-      <span className="hidden sm:block">Next</span>
       <ChevronRightIcon />
     </PaginationLink>
   )

@@ -10,7 +10,6 @@ import {
 } from "@/src/ui/pagination"
 import { useSearchParams } from 'next/navigation'
 
-
 interface PaginationAreaProps {
   pagination: {
     totalPages?: number
@@ -39,7 +38,7 @@ export function PaginationArea({ pagination }: PaginationAreaProps) {
   }
 
   return (
-    <Pagination>
+    <Pagination className='mt-3'>
       <PaginationContent>
         <PaginationItem>
           <PaginationPrevious

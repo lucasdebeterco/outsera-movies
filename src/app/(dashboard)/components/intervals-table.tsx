@@ -10,15 +10,18 @@ export function IntervalsTable(
   { data }: IntervalsTableProps
 ) {
   return (
-    <div>
-      <span>
-     Mostrar em tabelas os produtores com maior e menor intervalo entre vitórias
+    <div className='flex flex-col gap-2'>
+      <span className='font-bold'>
+        Producers with longest and shortest interval between wins
       </span>
-
-      Maximum
-      <DataTable columns={intervalsColumns} data={data.max} />
-      Minimum
-      <DataTable columns={intervalsColumns} data={data.min} />
+      <div>
+        <span className='text-sm'>Maximum</span>
+        <DataTable columns={intervalsColumns} data={data.max} />
+      </div>
+      <div>
+        <span className='text-sm'>Minimum</span>
+        <DataTable columns={intervalsColumns} data={data.min} />
+      </div>
     </div>
 )
 }

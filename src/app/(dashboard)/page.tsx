@@ -6,7 +6,8 @@ import { getIntervals } from '@/src/app/api/get-intervals'
 import { IntervalsTable } from '@/src/app/(dashboard)/components/intervals-table'
 import { WinnersByYearTable } from '@/src/app/(dashboard)/components/winners-by-year-table'
 import { getWinnersByYear, GetWinnersByYearFilterProps } from '@/src/app/api/get-winners-by-year'
-import { SearchParams } from 'next/dist/server/request/search-params'
+
+type SearchParams = Promise<{ [page: string]: string }>
 
 export default async function Dashboard(props: {
   searchParams: SearchParams
@@ -22,8 +23,11 @@ export default async function Dashboard(props: {
   const winnersByYearData = await getWinnersByYear({ filters: filters })
 
   return (
-   <section className="overflow-y-auto max-h-[100%]">
-     <div className="flex flex-col gap-6">
+   <section className="overflow-y-auto flex flex-col gap-5 max-h-[100%]">
+     <h1 className='text-2xl font-bold text-primary'>
+       Movies Dashboard
+     </h1>
+     <div className="grid grid-cols-2 gap-6">
        <YearsWithMultipleWinnersTable data={yearsWithMultipleWinners?.years} />
        <StudiosWithWinCountTable data={studiosWithWinCount?.studios} />
        <IntervalsTable data={intervalsData} />
