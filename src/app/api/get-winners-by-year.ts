@@ -12,9 +12,6 @@ export async function getWinnersByYear({ filters }: GetWinnersByYearsProps = {})
   const baseUrl = process.env.API_BASE_URL
   const searchParams = createSearchParams(filters)
 
-  console.log('searchParams', searchParams)
-
-
   const response = await fetch(
     `${baseUrl}/movies/winnersByYear${searchParams}`,
     {

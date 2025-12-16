@@ -36,7 +36,9 @@ export function MoviesTable({ moviesList }: MoviesTableProps) {
     const params = new URLSearchParams(searchParams.toString())
 
     if (filterWinner) {
-      params.set('winner', filterWinner)
+      filterWinner === 'all'
+        ? params.delete('winner')
+        : params.set('winner', filterWinner)
     } else {
       params.delete('winner')
     }
@@ -60,8 +62,9 @@ export function MoviesTable({ moviesList }: MoviesTableProps) {
           </SelectTrigger>
           <SelectContent>
             <SelectGroup>
-              <SelectItem value="0">No</SelectItem>
-              <SelectItem value="1">Yes</SelectItem>
+              <SelectItem value='0'>No</SelectItem>
+              <SelectItem value='1'>Yes</SelectItem>
+              <SelectItem value='all'>All</SelectItem>
             </SelectGroup>
           </SelectContent>
         </Select>
