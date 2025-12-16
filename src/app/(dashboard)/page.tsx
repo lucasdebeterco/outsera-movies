@@ -17,10 +17,17 @@ export default async function Dashboard(props: {
     year: searchParams.year ? Number(searchParams.year) : undefined,
   }
 
-  const yearsWithMultipleWinners = await getYearsWithMultipleWinners()
-  const studiosWithWinCount = await getStudiosWithWinCount()
-  const intervalsData = await getIntervals()
-  const winnersByYearData = await getWinnersByYear({ filters: filters })
+  const [
+    yearsWithMultipleWinners,
+    studiosWithWinCount,
+    intervalsData,
+    winnersByYearData,
+  ] = await Promise.all([
+    getYearsWithMultipleWinners(),
+    getStudiosWithWinCount(),
+    getIntervals(),
+    getWinnersByYear({ filters }),
+  ])
 
   return (
    <section className="overflow-y-auto flex flex-col gap-5 max-h-[100%] pr-2">
