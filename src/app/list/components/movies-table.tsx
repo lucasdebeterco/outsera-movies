@@ -27,7 +27,7 @@ export function MoviesTable({ moviesList }: MoviesTableProps) {
   const searchParams = useSearchParams()
   const params = new URLSearchParams(searchParams.toString())
 
-  const [filterWinner, setFilterWinner] = useState(params.get('winner') ?? '')
+  const [filterWinner, setFilterWinner] = useState(params.get('winner') ?? 'all')
   const [filterYear, setFilterYear] = useState(params.get('year') ?? '')
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
